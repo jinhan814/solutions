@@ -4,6 +4,7 @@
 
 #### GERMAN
 - gcpc22
+- gcpc23
 
 #### LATIN
 - latin22

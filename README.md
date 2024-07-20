@@ -2,6 +2,9 @@
 
 ### ICPC
 
+#### GERMAN
+- gcpc22
+
 #### LATIN
 - latin22
 - latin24master

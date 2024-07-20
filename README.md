@@ -13,6 +13,7 @@
 
 #### SEERC
 - seerc18
+- seerc20
 
 #### SWERC
 - swerc16

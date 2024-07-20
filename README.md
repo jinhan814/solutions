@@ -6,6 +6,9 @@
 - gcpc22*
 - gcpc23
 
+#### KOREA
+- korea21
+
 #### LATIN
 - latin22
 - latin24

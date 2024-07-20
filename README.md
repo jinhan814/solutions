@@ -2,25 +2,27 @@
 
 ### ICPC
 
-#### GERMAN
-- gcpc22*
-- gcpc23
+```
+# GERMAN
+-- gcpc22*
+-- gcpc23
 
-#### KOREA
-- korea21
+# KOREA
+-- korea21
 
-#### LATIN
-- latin22
-- latin24
-- latin24master*
+# LATIN
+-- latin22
+-- latin24
+-- latin24master*
 
-#### SEERC
-- seerc18
-- seerc20
+# SEERC
+-- seerc18
+-- seerc20
 
-#### SWERC
-- swerc16
-- swerc21
+# SWERC
+-- swerc16
+-- swerc21
 
-#### TAIWAN
-- topc22
+# TAIWAN
+-- topc22
+```

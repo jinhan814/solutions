@@ -3,12 +3,15 @@
 ### ICPC
 
 #### GERMAN
-- gcpc22
+- gcpc22*
 - gcpc23
 
 #### LATIN
 - latin22
-- latin24master
+- latin24master*
+
+#### SEERC
+- seerc18
 
 #### TAIWAN
 - topc22

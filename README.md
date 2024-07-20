@@ -8,6 +8,7 @@
 
 #### LATIN
 - latin22
+- latin24
 - latin24master*
 
 #### SEERC

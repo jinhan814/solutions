@@ -2,16 +2,15 @@
 #define fastio cin.tie(0)->sync_with_stdio(0)
 using namespace std;
 
-using i64 = long long;
-
 auto sol = [](int n, int m, auto v) -> int {
 	if (n == 1 || m == 1) return 1;
 	auto check = [&](int k) -> bool {
-		i64 s = 0, a = 0, b = 0;
+		int s = 0, a = 0, b = 0;
 		for (int i = 0; i < k; i++) {
 			s += v[i] / 3;
 			if (v[i] % 3 == 1) a++;
 			if (v[i] % 3 == 2) b++;
+			if (s > m - 2) return 0;
 		}
 		s += (a + 1 - min(a, b)) / 2 + b;
 		return s <= m - 2;

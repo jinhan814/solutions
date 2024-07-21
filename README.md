@@ -15,6 +15,9 @@
 -- latin24
 -- latin24master*
 
+# NWERC
+-- nwerc23
+
 # SEERC
 -- seerc18
 -- seerc20

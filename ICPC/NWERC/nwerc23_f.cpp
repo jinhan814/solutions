@@ -3,7 +3,7 @@
 using namespace std;
 
 using i64 = long long;
-using i128 = __int128_t;
+using i128 = __int128;
 
 auto sol = [](i64 a, i64 b, i64 c, i64 d) -> pair<string, string> {
 	string sa = to_string(a);

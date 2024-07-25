@@ -6,14 +6,7 @@ constexpr int mod = 998'244'353;
 int add(int a, int b) { return a + b < mod ? a + b : a + b - mod; }
 int sub(int a, int b) { return a < b ? a - b + mod : a - b; }
 int mul(int a, int b) { return 1LL * a * b % mod; }
-int pow(int x, int n) {
-	int ret = 1;
-	for (; n; n >>= 1) {
-		if (n & 1) ret = mul(ret, x);
-		x = mul(x, x);
-	}
-	return ret;
-}
+int pow(int x, int n) { return n ? n & 1 ? mul(x, pow(x, n - 1)) : pow(mul(x, x), n / 2) : 1; }
 
 auto fac = [] {
 	vector fac(200'001, 1);

@@ -5,30 +5,27 @@ using namespace std;
 using i64 = long long;
 
 struct node {
-	i64 l, r, s, mx, e;
-	node() : l(0), r(0), s(0), mx(0), e(1) {}
-	node(i64 x) : l(x), r(x), s(x), mx(x), e(0) {}
+	i64 s, l, r, mx;
+	node() : node(0) {}
+	node(i64 x) : s(x), l(x), r(x), mx(x) {}
 	node operator+ (const node& x) const {
-		if (e) return x;
-		if (x.e) return *this;
 		node ret;
+		ret.s = s + x.s;
 		ret.l = max(l, s + x.l);
 		ret.r = max(r + x.s, x.r);
-		ret.s = s + x.s;
 		ret.mx = max({ mx, x.mx, r + x.l });
-		ret.e = 0;
 		return ret;
 	}
 };
 
 struct segtree {
-	segtree(int n) : sz(1 << __lg(n - 1) + 1), tree(sz << 1) {}
+	segtree(int n) : sz(1 << __lg(n - 1) + 1), tree(sz << 1, node(0)) {}
 	void update(int i, node x) {
 		tree[--i |= sz] = x;
 		while (i >>= 1) tree[i] = tree[i << 1] + tree[i << 1 | 1];
 	}
 	i64 query(int l, int r) const {
-		node res_l, res_r;
+		node res_l(-(1 << 30)), res_r(-(1 << 30));
 		for (--l |= sz, --r |= sz; l <= r; l >>= 1, r >>= 1) {
 			if (l & 1) res_l = res_l + tree[l++];
 			if (~r & 1) res_r = tree[r--] + res_r;
@@ -38,24 +35,6 @@ struct segtree {
 private:
 	int sz;
 	vector<node> tree;
-};
-
-struct fenwick {
-	fenwick(int n) : sz(n), tree(sz + 1) {}
-	void update(int i, int x) {
-		for (; i <= sz; i += i & -i) tree[i] += x;
-	}
-	int query(int i) const {
-		int ret = 0;
-		for (; i; i -= i & -i) ret += tree[i];
-		return ret;
-	}
-	int query(int l, int r) const {
-		return query(r) - query(l - 1);
-	}
-private:
-	int sz;
-	vector<int> tree;
 };
 
 int main() {
@@ -87,23 +66,14 @@ int main() {
 	}
 
 	segtree tree(m);
-	fenwick ft(m);
 	vector res(q + 1, 0LL);
 	for (int i = 0, pos = 0; i < q; i++) {
 		auto [p, l, r] = queries[idx[i]];
 		while (pos < p) {
-			for (int x : buc_minus[pos]) {
-				tree.update(x, node());
-				ft.update(x, -1);
-			}
-			pos++;
-			for (int x : buc_plus[pos]) {
-				tree.update(x, node(op[x][2]));
-				ft.update(x, 1);
-			}
+			for (int x : buc_minus[pos++]) tree.update(x, node(0));
+			for (int x : buc_plus[pos]) tree.update(x, node(op[x][2]));
 		}
 		res[idx[i]] = tree.query(l, r);
-		if (res[idx[i]] < 0 && ft.query(l, r) != (r - l + 1)) res[idx[i]] = 0;
 	}
 	for (int i = 1; i <= q; i++) cout << res[i] << '\n';
 }

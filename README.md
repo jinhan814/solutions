@@ -7,6 +7,9 @@
 -- gcpc22*
 -- gcpc23
 
+# INDONESIA
+-- jakarta23
+
 # KOREA
 -- korea09
 -- korea21

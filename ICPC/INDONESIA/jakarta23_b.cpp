@@ -11,7 +11,6 @@ auto f = [](const string& s) {
 auto sol = [](const string& s, const string& t) -> bool {
 	auto [a1, b1] = f(s);
 	auto [a2, b2] = f(t);
-	if (!a1) return !a2;
 	if (a1 == a2 && b1 == b2) return 1;
 	if (b1 + 1 == a2 && a1 - 1 == b2) return 1;
 	return 0;

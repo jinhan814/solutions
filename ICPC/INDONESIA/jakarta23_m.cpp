@@ -6,7 +6,7 @@ using i64 = long long;
 
 int main() {
 	fastio;
-	i64 n, s = 0, m = 0; cin >> n;
-	while (n--) { i64 x; cin >> x; s += x; m = max(m, x); }
+	i64 n, x, s = 0, m = 0; cin >> n;
+	while (n--) cin >> x, s += x, m = max(m, x);
 	cout << min(s - m, s / 3) << '\n';
 }

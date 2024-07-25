@@ -25,10 +25,7 @@ int main() {
 		return ret;
 	};
 
-	if (!dfs(dfs, buc.size() - 1, n)) {
-		cout << -1 << '\n';
-		return 0;
-	}
+	if (!dfs(dfs, buc.size() - 1, n)) return cout << -1 << '\n', 0;
 
 	vector a(0, 0), b(0, 0);
 	auto trace = [&](const auto& self, int i, int rem) -> void {

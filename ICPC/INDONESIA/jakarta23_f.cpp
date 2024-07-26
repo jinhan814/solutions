@@ -19,7 +19,7 @@ struct node {
 };
 
 struct segtree {
-	segtree(int n) : sz(1 << __lg(n - 1) + 1), tree(sz << 1, node(0)) {}
+	segtree(int n) : sz(1 << __lg(n - 1) + 1), tree(sz << 1) {}
 	void update(int i, node x) {
 		tree[--i |= sz] = x;
 		while (i >>= 1) tree[i] = tree[i << 1] + tree[i << 1 | 1];
@@ -70,7 +70,7 @@ int main() {
 	for (int i = 0, pos = 0; i < q; i++) {
 		auto [p, l, r] = queries[idx[i]];
 		while (pos < p) {
-			for (int x : buc_minus[pos++]) tree.update(x, node(0));
+			for (int x : buc_minus[pos++]) tree.update(x, node());
 			for (int x : buc_plus[pos]) tree.update(x, node(op[x][2]));
 		}
 		res[idx[i]] = tree.query(l, r);

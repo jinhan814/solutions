@@ -44,7 +44,7 @@ auto sol = [](int n, int l, int r, const auto& adj) {
 	fenwick tree(n);
 	auto update = [&](int cur) {
 		tree.update(0, 1);
-		vector buc(0, vector(0, 0));
+		vector buc(0, 0);
 		for (int nxt : adj[cur]) {
 			if (c[nxt]) continue;
 			vector d(0, 0);
@@ -57,13 +57,10 @@ auto sol = [](int n, int l, int r, const auto& adj) {
 				}
 			};
 			dfs(dfs, nxt, cur, 1);
-			for (int dep : d) tree.update(dep, 1);
-			buc.push_back(d);
+			for (int dep : d) tree.update(dep, 1), buc.push_back(dep);
 		}
 		tree.update(0, -1);
-		for (const auto& d : buc) {
-			for (int dep : d) tree.update(dep, -1);
-		}
+		for (int dep : buc) tree.update(dep, -1);
 	};
 
 	vector q(1, 1);

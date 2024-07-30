@@ -769,16 +769,16 @@ auto get_freq = [](const auto& adj) {
 			vector d(0, 0LL);
 			auto dfs = [&](const auto& self, int cur, int prv, int dep) -> void {
 				while (d.size() <= dep) d.push_back(0); d[dep]++;
-                for (int nxt : adj[cur]) {
-                    if (nxt == prv || c[nxt]) continue;
+				for (int nxt : adj[cur]) {
+					if (nxt == prv || c[nxt]) continue;
 					self(self, nxt, cur, dep + 1);
-                }
+				}
 			};
 			dfs(dfs, nxt, cur, 1);
 			buc.push_back(d);
 		}
 		sort(buc.begin(), buc.end(), [&](const auto& a, const auto& b) {
-            return a.size() < b.size();
+			return a.size() < b.size();
 		});
 		vector acc(1, 1LL);
 		for (const auto& d : buc) {
@@ -802,19 +802,19 @@ auto get_freq = [](const auto& adj) {
 };
 
 int main() {
-    fastio;
-    int N; cin >> N;
-    while (N--) {
-        int n, l, r; cin >> n >> l >> r;
-        vector adj(n + 1, vector(0, 0));
-        for (int i = 1; i < n; i++) {
-            int a, b; cin >> a >> b;
-            adj[a].push_back(b);
-            adj[b].push_back(a);
-        }
-        auto freq = get_freq(adj);
-        auto res = 0LL;
-        for (int i = n - 1 - r; i <= n - 1 - l; i++) res += freq[i];
-        cout << res << '\n';
-    }
+	fastio;
+	int N; cin >> N;
+	while (N--) {
+		int n, l, r; cin >> n >> l >> r;
+		vector adj(n + 1, vector(0, 0));
+		for (int i = 1; i < n; i++) {
+			int a, b; cin >> a >> b;
+			adj[a].push_back(b);
+			adj[b].push_back(a);
+		}
+		auto freq = get_freq(adj);
+		auto res = 0LL;
+		for (int i = n - 1 - r; i <= n - 1 - l; i++) res += freq[i];
+		cout << res << '\n';
+	}
 }

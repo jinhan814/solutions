@@ -17,7 +17,7 @@ auto sol = [](int n, int x, int l, int r, int a, int b, int p) -> int {
 	auto inv = [&](int x) { return pow(x, p - 2); };
 
 	// baby step giant step
-	const int s = 10'000;
+	const int s = 2'000;
 	const int m = (n - 1) / s;
 	unordered_set buc{ -1 };
 	for (int i = 0; i < m; i++) buc.insert(inv(pow(a, i * s)));

@@ -15,8 +15,8 @@ int main() {
 			buc[a].push_back(b);
 		}
 		buc[n + 1].push_back(0);
-		i64 a = 0, b = 0, px = 1;
 		vector p(1, m + 1);
+		i64 a = 0, b = 0, px = 1;
 		for (auto [x, v] : buc) {
 			i64 py = 1;
 			for (int i = 0; i < p.size(); i++) {

@@ -4,33 +4,15 @@ using namespace std;
 
 struct vec {
 	double x, y, z;
-	double norm() const {
-		return sqrt(x * x + y * y + z * z);
-	}
-	vec operator-() const {
-		return vec{ -x, -y, -z };
-	}
-	vec operator*(double v) const {
-		return vec{ x * v, y * v, z * v };
-	}
-	vec operator/(double v) const {
-		return vec{ x / v, y / v, z / v };
-	}
-	vec operator+(const vec& v) const {
-		return vec{ x + v.x, y + v.y, z + v.z };
-	}
-	vec operator-(const vec& v) const {
-		return vec{ x - v.x, y - v.y, z - v.z };
-	}
-	vec operator*(const vec& v) const {
-		return vec{ x * v.x, y * v.y, z * v.z };
-	}
-	vec operator^(const vec& v) const {
-		return vec{ y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x };
-	}
-	friend istream& operator>>(istream& in, vec& v) {
-		return in >> v.x >> v.y >> v.z;
-	}
+	double norm() const { return sqrt(x * x + y * y + z * z); }
+	vec operator-() const { return vec{ -x, -y, -z }; }
+	vec operator*(double v) const { return vec{ x * v, y * v, z * v }; }
+	vec operator/(double v) const { return vec{ x / v, y / v, z / v }; }
+	vec operator+(const vec& v) const { return vec{ x + v.x, y + v.y, z + v.z }; }
+	vec operator-(const vec& v) const { return vec{ x - v.x, y - v.y, z - v.z }; }
+	vec operator*(const vec& v) const { return vec{ x * v.x, y * v.y, z * v.z }; }
+	vec operator^(const vec& v) const { return vec{ y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x }; }
+	friend istream& operator>>(istream& in, vec& v) { return in >> v.x >> v.y >> v.z; }
 };
 
 auto sol = [](vec n, vec v, vec h) {

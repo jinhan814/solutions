@@ -3,6 +3,9 @@
 ### ICPC
 
 ```
+# ARAB
+-- arab18
+
 # GERMAN
 -- gcpc22*
 -- gcpc23

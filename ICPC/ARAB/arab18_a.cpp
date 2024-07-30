@@ -763,7 +763,7 @@ auto get_freq = [](const auto& adj) {
 	};
 
 	vector res(n, 0LL);
-	auto get_buc = [&](int cur) {
+	auto update = [&](int cur) {
 		vector buc(0, vector(0, 0LL));
 		for (int nxt : adj[cur]) if (!c[nxt]) {
 			vector d(0, 0LL);
@@ -780,9 +780,6 @@ auto get_freq = [](const auto& adj) {
 		sort(buc.begin(), buc.end(), [&](const auto& a, const auto& b) {
             return a.size() < b.size();
 		});
-		return buc;
-	};
-	auto update = [&](const auto& buc) {
 		vector acc(1, 1LL);
 		for (const auto& d : buc) {
 			auto c = mul(acc, d);
@@ -791,15 +788,16 @@ auto get_freq = [](const auto& adj) {
 			for (int i = 0; i < d.size(); i++) acc[i] += d[i];
 		}
 	};
-	auto dnc = [&](const auto& self, int cur) -> void {
-		int s = get_sz(get_sz, cur, -1);
-		int cent = get_cent(get_cent, cur, -1, s / 2);
-		update(get_buc(cent));
+
+	vector q(1, 1);
+	while (q.size()) {
+		int x = q.back(); q.pop_back();
+		int s = get_sz(get_sz, x, -1);
+		int cent = get_cent(get_cent, x, -1, s / 2);
+		update(cent);
 		c[cent] = 1;
-		for (int nxt : adj[cent]) if (!c[nxt]) self(self, nxt);
-		c[cent] = 0;
-	};
-	dnc(dnc, 1);
+		for (int nxt : adj[cent]) if (!c[nxt]) q.push_back(nxt);
+	}
 	return res;
 };
 

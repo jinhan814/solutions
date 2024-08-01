@@ -16,6 +16,7 @@
 # KOREA
 -- korea09
 -- korea21
+-- korea22
 
 # LATIN
 -- latin22

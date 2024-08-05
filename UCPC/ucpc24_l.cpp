@@ -13,17 +13,14 @@ int main() {
 	}
 
 	vector adj(n * n + 1, vector(0, 0));
-	vector rev(n * n + 1, vector(0, 0));
 	vector par(n * n + 1, 0);
-	vector rpar(n * n + 1, 0);
-
 	auto match = [&](int i) {
 		vector c(n * n + 1, 0);
 		auto dfs = [&](const auto& self, int cur) -> bool {
 			if (c[cur]++) return 0;
 			for (int nxt : adj[cur]) {
 				if (!par[nxt] || self(self, par[nxt]))
-					return par[nxt] = cur, rpar[cur] = nxt, 1;
+					return par[nxt] = cur, par[cur] = nxt, 1;
 			}
 			return 0;
 		};
@@ -32,7 +29,6 @@ int main() {
 
 	for (int i : idx) {
 		int x = (i - 1) / n, y = (i - 1) % n;
-		if (x + y & 1) swap(adj, rev), swap(par, rpar);
 		for (int d = 0; d < 4; d++) {
 			int nx = x + "1012"[d] - '1';
 			int ny = y + "2101"[d] - '1';
@@ -40,9 +36,8 @@ int main() {
 			if (v[nx][ny] > v[x][y]) continue;
 			int j = nx * n + ny + 1;
 			adj[i].push_back(j);
-			rev[j].push_back(i);
+			adj[j].push_back(i);
 		}
 		if (match(i)) cout << v[x][y] << '\n';
-		if (x + y & 1) swap(adj, rev), swap(par, rpar);
 	}
 }

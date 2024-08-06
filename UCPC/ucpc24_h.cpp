@@ -25,22 +25,15 @@ int main() {
 		return 1LL * x1 * y2 - 1LL * x2 * y1;
 	};
 
-	auto is_in_triangle = [&](const auto& a, const auto& b, const auto& c, const auto& p) -> bool {
-		if (ccw(a, b, p) < 0) return 0;
-		if (ccw(b, c, p) < 0) return 0;
-		if (ccw(c, a, p) < 0) return 0;
-		return 1;
-	};
-
 	auto is_in = [&](const auto& p) -> bool {
 		if (p == pair(0, 0)) return 1;
 		if (ccw(pair(0, 0), v[x - 1], p) >= 0 &&
 			ccw(pair(0, 0), v[x], p) <= 0) {
-			return is_in_triangle(pair(0, 0), v[x - 1], v[x], p);
+			return ccw(v[x - 1], v[x], p) >= 0;
 		}
 		if (ccw(pair(0, 0), v[n - 1], p) >= 0 &&
 			ccw(pair(0, 0), v[0], p) <= 0) {
-			return is_in_triangle(pair(0, 0), v[n - 1], v[0], p);
+			return ccw(v[n - 1], v[0], p) >= 0;
 		}
 		auto [lo, hi] = p.first > 0 ? pair(0, x - 1) : pair(x - 1, n - 1);
 		while (lo + 1 < hi) {
@@ -48,7 +41,7 @@ int main() {
 			if (ccw(pair(0, 0), v[mid], p) >= 0) lo = mid;
 			else hi = mid;
 		}
-		return is_in_triangle(pair(0, 0), v[lo], v[hi], p);
+		return ccw(v[lo], v[hi], p) >= 0;
 	};
 
 	auto move = [&](const auto& a, const auto& b, bool f) {
@@ -58,11 +51,11 @@ int main() {
 		return pair((cx + px) / 2, (cy + py) / 2);
 	};
 
-	vector res(q, 0);
-	res[0] = is_in(qu[0]);
+	int res = is_in(qu[0]);
+	cout << res << '\n';
 	for (int i = 1; i < q; i++) {
-		qu[i] = move(qu[i - 1], qu[i], res[i - 1]);
-		res[i] = is_in(qu[i]);
+		qu[i] = move(qu[i - 1], qu[i], res);
+		res = is_in(qu[i]);
+		cout << res << '\n';
 	}
-	for (int x : res) cout << x << '\n';
 }

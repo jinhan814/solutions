@@ -10,6 +10,9 @@
 -- gcpc22*
 -- gcpc23
 
+# HONGKONG
+-- hongkong23
+
 # INDONESIA
 -- jakarta23
 

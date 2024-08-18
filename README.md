@@ -29,7 +29,7 @@
 # NWERC
 -- nwerc23
 
-# RUSSIA
+# NWRRC
 -- nwrrc19
 
 # SEERC

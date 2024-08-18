@@ -2,7 +2,7 @@
 #define fastio cin.tie(0)->sync_with_stdio(0)
 using namespace std;
 
-constexpr int mod = 119 << 23 | 1;
+constexpr int mod = 998'244'353;
 int add(int a, int b) { return a + b < mod ? a + b : a + b - mod; }
 int sub(int a, int b) { return a < b ? a - b + mod : a - b; }
 int mul(int a, int b) { return 1LL * a * b % mod; }
@@ -18,8 +18,7 @@ int main() {
 		int b = mul(i >> 1, pow(k, i + 2 >> 1));
 		c[i] = add(c[i], add(a, b));
 		res = add(res, mul(n / i, c[i]));
-		for (int j = 2; i * j <= n; j++)
-			c[i * j] = sub(c[i * j], mul(j, c[i]));
+		for (int j = 2; i * j <= n; j++) c[i * j] = sub(c[i * j], mul(j, c[i]));
 	}
 	cout << res << '\n';
 }

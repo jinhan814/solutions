@@ -16,6 +16,6 @@ int main() {
 	}
 	int x = x_mx + x_mn >> 1;
 	int y = y_mx + y_mn >> 1;
-	int h = max(x_mx - x_mn + 1 >> 1, y_mx - y_mn + 1 >> 1);
+	int h = max(x_mx - x_mn, y_mx - y_mn) + 1 >> 1;
 	cout << x << ' ' << y << ' ' << h << '\n';
 }

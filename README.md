@@ -25,9 +25,9 @@
 -- korea22
 
 # LATIN
+-- latam24*
 -- latin22
 -- latin24
--- latin24master*
 
 # NWERC
 -- nwerc23

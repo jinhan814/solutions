@@ -7,5 +7,5 @@ int main() {
 	string s; cin >> s;
 	vector v(128, 0);
 	for (char c : s) v[c]++;
-    cout << min({ v['T'], v['P'], v['A'] + v['U'] }) << '\n';
+	cout << min({ v['T'], v['P'], v['A'] + v['U'] }) << '\n';
 }

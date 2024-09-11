@@ -7,10 +7,10 @@ int main() {
 	int n; cin >> n;
 	vector v(n, 0);
 	for (int i = 0; i < n; i++) cin >> v[i];
-	int res = 0;
+	int x = 0, y = 0;
 	for (int i = 0; i < n; i++) {
-		res += v[i] ? 1 : -1;
-		if (i > 1 && v[i - 2] == 1 && v[i - 1] == 1 && v[i] == 1) res++;
+		if (v[i] > 0) x++;
+		if (i > 1 && v[i - 2] == 1 && v[i - 1] == 1 && v[i] == 1) y++;
 	}
-	cout << res << '\n';
+	cout << 2 * x + y - n << '\n';
 }

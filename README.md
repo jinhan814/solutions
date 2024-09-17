@@ -12,6 +12,9 @@
 # ASIA
 -- apc24
 
+# BAPC
+-- bapc19
+
 # GERMAN
 -- gcpc22*
 -- gcpc23
@@ -20,6 +23,7 @@
 -- hongkong23
 
 # INDONESIA
+-- jakarta17
 -- jakarta23
 
 # KOREA

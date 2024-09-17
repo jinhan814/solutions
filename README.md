@@ -56,6 +56,10 @@
 
 # TAIWAN
 -- topc22
+
+# THAILAND
+-- thai15
+-- thai16
 ```
 
 ### UCPC

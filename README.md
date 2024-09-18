@@ -40,6 +40,7 @@
 -- nac20
 
 # NWERC
+-- nwerc06
 -- nwerc19
 -- nwerc23
 

@@ -73,6 +73,7 @@
 ### MISC
 
 ```
+-- idt24(https://codeforces.com/gym/105064)
 -- lscpc22(https://codeforces.com/gym/104467)
 -- tcp24()
 ```

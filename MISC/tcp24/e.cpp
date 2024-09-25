@@ -8,7 +8,7 @@ int mul(int a, int b) { return 1LL * a * b % mod; }
 int pow(int x, int n) { return n ? n & 1 ? mul(x, pow(x, n - 1)) : pow(mul(x, x), n / 2) : 1; }
 
 auto [fac, inv] = [] {
-	const int sz = 100'000;
+	const int sz = 200'000;
 	vector fac(sz + 1, 1);
 	for (int i = 1; i <= sz; i++) fac[i] = mul(fac[i - 1], i);
 	vector inv(sz + 1, pow(fac[sz], mod - 2));

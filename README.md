@@ -72,9 +72,7 @@
 
 ### MISC
 
-```
--- idt24(https://codeforces.com/gym/105064)
--- lscpc22(https://codeforces.com/gym/104467)
--- tcp24(https://codeforces.com/gym/105319)
--- wintercup5(https://codeforces.com/group/MAbng8L9pC/contest/426194)
-```
+- idt24 https://codeforces.com/gym/105064
+- lscpc22 https://codeforces.com/gym/104467
+- tcp24 https://codeforces.com/gym/105319
+- wintercup5 https://codeforces.com/group/MAbng8L9pC/contest/426194

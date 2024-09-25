@@ -69,3 +69,10 @@
 -- ucpc18
 -- ucpc24
 ```
+
+### MISC
+
+```
+-- lscpc22(https://codeforces.com/gym/104467)
+-- tcp24()
+```

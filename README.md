@@ -15,6 +15,9 @@
 # BAPC
 -- bapc19
 
+# CERC
+-- cerc22
+
 # GERMAN
 -- gcpc22*
 -- gcpc23

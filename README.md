@@ -47,6 +47,9 @@
 # NWRRC
 -- nwrrc19
 
+# RMC
+-- rmc14
+
 # SEERC
 -- seerc18
 -- seerc20

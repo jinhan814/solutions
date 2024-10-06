@@ -12,28 +12,23 @@ int inv(int x) { return pow(x, mod - 2); }
 int main() {
 	fastio;
 	int n; cin >> n;
-	vector a(n, array{ 0, 0, 0 });
-	vector b(n, array{ 0, 0, 0 });
-	for (auto& [r, s, p] : a) cin >> r >> s >> p;
-	for (auto& [r, s, p] : b) cin >> r >> s >> p;
-	vector c(n, vector(3, 0));
-	for (int i = 0; i < n; i++) {
-		auto [r1, s1, p1] = a[i];
-		auto [r2, s2, p2] = b[i];
-		int x = add(mul(r1, s2), add(mul(s1, p2), mul(p1, r2)));
-		int y = add(mul(r2, s1), add(mul(s2, p1), mul(p2, r1)));
-		int t = mul(inv(r1 + s1 + p1), inv(r2 + s2 + p2));
-		x = mul(x, t), y = mul(y, t);
-		c[i] = { sub(1, add(x, y)), x, y };
-	}
-	vector dp = c[0];
+	vector v(2, vector(n, array{ 0, 0, 0 }));
+	for (auto& [r, s, p] : v[0]) cin >> r >> s >> p;
+	for (auto& [r, s, p] : v[1]) cin >> r >> s >> p;
 	int res = 0;
-	for (int i = 1; i < n; i++) {
-		res = add(res, mul(dp[1], c[i][0]));
+	vector dp{ 1, 0, 0 };
+	for (int i = 0; i < n; i++) {
+		auto [r1, s1, p1] = v[0][i];
+		auto [r2, s2, p2] = v[1][i];
+		int t = mul(inv(r1 + s1 + p1), inv(r2 + s2 + p2));
+		int a = mul(add(mul(r1, s2), add(mul(s1, p2), mul(p1, r2))), t);
+		int b = mul(add(mul(r2, s1), add(mul(s2, p1), mul(p2, r1))), t);
+		int c = sub(1, add(a, b));
+		res = add(res, mul(dp[1], c));
 		vector ndp(3, 0);
-		ndp[0] = mul(dp[0], c[i][0]);
-		ndp[1] = mul(add(dp[0], add(dp[1], dp[2])), c[i][1]);
-		ndp[2] = mul(add(dp[0], add(dp[1], dp[2])), c[i][2]);
+		ndp[0] = mul(dp[0], c);
+		ndp[1] = mul(add(dp[0], add(dp[1], dp[2])), a);
+		ndp[2] = mul(add(dp[0], add(dp[1], dp[2])), b);
 		dp.swap(ndp);
 	}
 	cout << res << '\n';

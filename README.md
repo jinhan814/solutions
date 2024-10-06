@@ -79,6 +79,12 @@
 -- ucpc24
 ```
 
+### KAIST
+
+```
+-- kaist24
+```
+
 ### MISC
 
 - idt24(https://codeforces.com/gym/105064)

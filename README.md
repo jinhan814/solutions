@@ -79,7 +79,7 @@
 -- ucpc24
 ```
 
-### UNIVERSITY
+### UNIV
 
 ```
 # KAIST

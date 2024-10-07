@@ -79,10 +79,14 @@
 -- ucpc24
 ```
 
-### KAIST
+### UNIVERSITY
 
 ```
+# KAIST
 -- kaist24
+
+# KCPC
+-- kcpc24
 ```
 
 ### MISC

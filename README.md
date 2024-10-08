@@ -66,6 +66,7 @@
 
 # TAIWAN
 -- topc22
+-- topc24
 
 # THAILAND
 -- thai15

@@ -56,6 +56,7 @@
 
 # RMC
 -- rmc14
+-- rmc19
 
 # SEERC
 -- seerc18

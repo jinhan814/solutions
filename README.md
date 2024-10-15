@@ -20,6 +20,7 @@
 -- cerc22
 
 # GERMAN
+-- gcpc20
 -- gcpc22*
 -- gcpc23
 

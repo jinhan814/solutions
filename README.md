@@ -62,6 +62,7 @@
 
 # SEERC
 -- seerc18
+-- seerc19
 -- seerc20
 
 # SWERC

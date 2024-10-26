@@ -32,6 +32,9 @@
 -- jakarta17
 -- jakarta23
 
+# JAPAN
+-- pre23
+
 # KOREA
 -- korea09
 -- korea21

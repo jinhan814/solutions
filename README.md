@@ -33,6 +33,7 @@
 -- jakarta23
 
 # JAPAN
+-- pre22
 -- pre23
 -- pre24
 

@@ -34,6 +34,7 @@
 
 # JAPAN
 -- pre23
+-- pre24
 
 # KOREA
 -- korea09

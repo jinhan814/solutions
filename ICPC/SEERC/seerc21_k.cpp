@@ -5,12 +5,11 @@ using namespace std;
 auto sol = [](int n, auto adj) {
 	int x = 1;
 	while (adj[x].size() != 1) x++;
-	vector par(n + 1, 0), dp(n + 1, 1 << 30);
+	vector dp(n + 1, 1 << 30);
 	auto rec = [&](const auto& self, int cur) -> void {
 		if (adj[cur].empty()) dp[cur] = cur;
 		for (int nxt : adj[cur]) {
 			adj[nxt].erase(ranges::find(adj[nxt], cur));
-			par[nxt] = cur;
 			self(self, nxt);
 			dp[cur] = min(dp[cur], dp[nxt]);
 		}

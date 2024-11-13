@@ -15,6 +15,7 @@
 # BAPC
 -- bapc19
 -- bapc22
+-- bapc24
 
 # CERC
 -- cerc15
@@ -74,6 +75,7 @@
 -- seerc21
 
 # SWERC
+-- swerc15
 -- swerc16
 -- swerc21
 

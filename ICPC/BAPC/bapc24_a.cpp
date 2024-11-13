@@ -5,7 +5,7 @@ using namespace std;
 int main() {
 	fastio;
 	int n, m, k; cin >> n >> m >> k;
-	vector p(n + 101, 0), c(n + 1, 0);
+	vector p(n + 1, 0), c(n + 1, 0);
 	for (int i = 1; i <= n; i++) {
 		string s; cin >> s;
 		p[i] = i;

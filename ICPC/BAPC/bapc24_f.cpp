@@ -38,17 +38,12 @@ auto sol = [](int n, auto p, auto adj) {
 		sort(g.begin(), g.end());
 		g.erase(unique(g.begin(), g.end()), g.end());
 	}
-	vector c(scc_cnt + 1, 0);
-	vector acc(scc_cnt + 1, 0.l);
-	for (int i = 1; i <= n; i++) {
-		if (p[i] == 1000) c[scc[i]] = 1;
-		if (c[scc[i]]) continue;
-		acc[scc[i]] += log10(1000 - p[i]) - 3;
-	}
+	vector acc(scc_cnt + 1, 1.l);
+	for (int i = 1; i <= n; i++) acc[scc[i]] *= 1 - p[i];
 	auto res = 0.l;
 	for (int i = 1; i <= scc_cnt; i++) {
-		if (scc_adj[i].size() || c[i]) continue;
-		res = max(res, pow(10, acc[i]));
+		if (scc_adj[i].size()) continue;
+		res = max(res, acc[i]);
 	}
 	return res;
 };
@@ -56,13 +51,9 @@ auto sol = [](int n, auto p, auto adj) {
 int main() {
 	fastio;
 	int n, m; cin >> n >> m;
-	vector p(n + 1, 0);
+	vector p(n + 1, 0.l);
 	vector adj(n + 1, vector(0, 0));
-	for (int i = 1; i <= n; i++) {
-		string s; cin >> s;
-		s.erase(s.begin() + 1);
-		p[i] = stoi(s);
-	}
+	for (int i = 1; i <= n; i++) cin >> p[i];
 	for (int i = 1; i <= m; i++) {
 		int a, b; cin >> a >> b;
 		adj[a].push_back(b);

@@ -57,16 +57,16 @@ auto sol = [](string s) {
 		lo[i][0] = 0;
 		hi[i][0] = n - 1;
 	}
-	for (int s = 1; s <= n; s++) {
-		lo[0][s] = 0;
+	for (int j = 1; j <= n; j++) {
+		lo[0][j] = 0;
 		for (int i = 1; i < n; i++) {
-			lo[i][s] = i;
-			if (lcp[i] >= s) lo[i][s] = lo[i - 1][s];
+			lo[i][j] = i;
+			if (lcp[i] >= j) lo[i][j] = lo[i - 1][j];
 		}
-		hi[n - 1][s] = n - 1;
+		hi[n - 1][j] = n - 1;
 		for (int i = n - 2; i >= 0; i--) {
-			hi[i][s] = i;
-			if (lcp[i + 1] >= s) hi[i][s] = hi[i + 1][s];
+			hi[i][j] = i;
+			if (lcp[i + 1] >= j) hi[i][j] = hi[i + 1][j];
 		}
 	}
 
@@ -81,13 +81,13 @@ auto sol = [](string s) {
 	vector dp(n, vector(n + 1, 1));
 	int res = n + 1;
 	for (int i = 0; i < n; i++) {
-		for (int s = 1; i < n - s + 1; s++) {
-			if (i < s) break;
-			int l = lo[rsa[i]][s];
-			int r = hi[rsa[i]][s];
-			int x = st[i - s].query(l, r);
-			if (x != -1) dp[i][s] = dp[x][s] + 1;
-			res = min(res, n - (s - 1) * dp[i][s] + s);
+		for (int j = 1; i < n - j + 1; j++) {
+			if (i < j) break;
+			int l = lo[rsa[i]][j];
+			int r = hi[rsa[i]][j];
+			int x = st[i - j].query(l, r);
+			if (x != -1) dp[i][j] = dp[x][j] + 1;
+			res = min(res, n - (j - 1) * dp[i][j] + j);
 		}
 	}
 	return res;

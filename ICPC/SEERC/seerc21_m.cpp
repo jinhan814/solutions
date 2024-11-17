@@ -29,7 +29,8 @@ auto sol = [](int n, const int mod) {
 	};
 
 	vector res(n + 1, 0);
-	auto rec = [&](const auto& self, i64 acc_m, i64 acc_s, int x, int cnt_x, int sz, int acc) -> void {
+	auto rec = [&](const auto& self, i64 acc_m, i64 acc_s,
+		int x, int cnt_x, int sz, int acc) -> void {
 		i64 p = acc_m - acc_s;
 		if (p + sz > n || x > n) return;
 		if (cnt_x) res[p + sz] = add(res[p + sz], mul(acc, bino(p + sz, sz)));

@@ -2,37 +2,45 @@
 #define fastio cin.tie(0)->sync_with_stdio(0)
 using namespace std;
 
+auto sol_alt = [](string s) {
+	const int n = s.size();
+	int res1 = 0, res2 = 0;
+	string t1(n, 0), t2(n, 0);
+	for (int i = 0; i < n; i++) {
+		t1[i] = i & 1 ? 48 : 49;
+		t2[i] = i & 1 ? 49 : 48;
+		if (s[i] != t1[i]) res1++;
+		if (s[i] != t2[i]) res2++;
+	}
+	if (res1 > res2) {
+		swap(res1, res2);
+		swap(t1, t2);
+	}
+	return pair(res1, t1);
+};
+
+auto sol = [](int k, string s) {
+	if (k == 2) return sol_alt(s);
+	const int n = s.size();
+	vector v(0, pair(0, 0));
+	for (int l = 0, r = 0; l < n; l = r) {
+		while (r < n && s[l] == s[r]) r++;
+		v.push_back({ l, r - 1 });
+	}
+	int res = 0;
+	for (auto [l, r] : v) {
+		if (r - l + 1 < k) continue;
+		l += k - 1;
+		while (l < r) res++, s[l] ^= 1, l += k;
+		if (l == r) res++, s[r - 1] ^= 1;
+	}
+	return pair(res, s);
+};
+
 int main() {
 	fastio;
-	int n; cin >> n;
-
-	auto f = [](char c) {
-		return string("AEIOUY").find(c) != -1;
-	};
-
-	auto update = [&](auto& dp, const string& s) {
-		vector ndp(3, 1 << 20);
-		int p = 0;
-		while (p < s.size() && f(s[p]) == f(s[0])) p++;
-		if (f(s[0])) {
-			ndp[0] = min(ndp[0], dp[0] + 1);
-			ndp[0] = min(ndp[0], dp[1] + 1);
-			ndp[0] = min(ndp[0], dp[2] + 1);
-			if (p < s.size()) ndp[1] = min(ndp[1], dp[0] + p + 1);
-			if (p < s.size()) ndp[2] = min(ndp[2], dp[1] + p + 1);
-		}
-		else {
-			if (p < s.size() && p == 1) ndp[0] = min(ndp[0], dp[1] + p + 1);
-			if (p < s.size() && p <= 2) ndp[0] = min(ndp[0], dp[0] + p + 1);
-			ndp[1] = min(ndp[1], dp[0] + 1);
-			ndp[2] = min(ndp[2], dp[1] + 1);
-		}
-		dp.swap(ndp);
-	};
-
-	vector dp{ 0, 1 << 20, 1 << 20 };
-	for (int i = 0; i < n; i++) { string s; cin >> s; update(dp, s); }
-	int res = ranges::min(dp);
-	if (res >> 20) cout << '*' << '\n';
-	else cout << res << '\n';
+	int k; cin >> k;
+	string s; cin >> s;
+	auto [res, t] = sol(k, s);
+	cout << res << ' ' << t << '\n';
 }

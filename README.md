@@ -46,6 +46,7 @@
 -- korea23
 
 # LATIN
+-- lac24
 -- latam24*
 -- latin22
 -- latin24

@@ -43,6 +43,7 @@
 -- korea09
 -- korea21
 -- korea22
+-- korea23
 
 # LATIN
 -- latam24*

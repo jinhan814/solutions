@@ -44,6 +44,7 @@
 -- korea21
 -- korea22
 -- korea23
+-- korea24
 -- pre24
 
 # LATIN

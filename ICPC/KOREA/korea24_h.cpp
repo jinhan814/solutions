@@ -5,10 +5,9 @@ using namespace std;
 using i64 = long long;
 
 struct ds {
-	void clear() { bias = 0; v.clear(); }
 	void push(i64 x) { v.push_back(x - bias); }
-	void add_bias(i64 x) { bias += x; }
 	void update(int i, i64 x) { i = v.size() - i, v[i] = min(v[i], x - bias); }
+	void shift(i64 x) { bias += x; }
 	int size() const { return v.size(); }
 	i64 operator[](int i) const { return v[v.size() - i] + bias; }
 private:
@@ -48,7 +47,6 @@ auto sol = [](int n, i64 w, const auto& par, const auto& cost, const auto& buc) 
 				for (int x = 1; x <= dp[j].size(); x++) {
 					dp[opt].update(x, dp[j][x]);
 				}
-				dp[j].clear();
 			}
 			for (int j = 0; j < buc[i].size(); j++) {
 				int x = buc[i].size() - j;
@@ -61,9 +59,8 @@ auto sol = [](int n, i64 w, const auto& par, const auto& cost, const auto& buc) 
 					res++;
 				}
 			}
-			dp[opt].add_bias(cost[i]);
+			dp[opt].shift(cost[i]);
 			swap(dp[i], dp[opt]);
-			dp[opt].clear();
 		}
 		for (int j = buc[i].size() - 1; j >= 0; j--) {
 			dp[i].push(buc[i][j]);

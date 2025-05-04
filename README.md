@@ -102,6 +102,7 @@
 -- ucpc18
 -- ucpc20
 -- ucpc22
+-- ucpc23
 -- ucpc24
 -- pre22
 -- pre23

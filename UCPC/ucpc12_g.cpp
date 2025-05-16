@@ -20,8 +20,8 @@ int main() {
 				}
 				cout << p << ' ' << v[j] - val[p] << ' ';
 			}
-			cout << '\n';
 			pv.swap(v);
+			cout << '\n';
 		}
 	}
 }

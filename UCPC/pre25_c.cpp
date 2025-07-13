@@ -3,18 +3,14 @@ using namespace std;
 
 using i64 = long long;
 
-struct segtree {
-	segtree(int n) : sz(1 << __lg(n - 1) + 1), tree(sz << 1) {}
+struct fenwick {
+	fenwick(int n) : sz(n), tree(n + 1) {}
 	void update(int i, i64 x) {
-		--i |= sz;
-		do tree[i] += x; while (i >>= 1);
+		for (; i <= sz; i += i & -i) tree[i] += x;
 	}
-	i64 query(int l, int r) const {
+	i64 query(int i) const {
 		i64 ret = 0;
-		for (--l |= sz, --r |= sz; l <= r; l >>= 1, r >>= 1) {
-			if (l & 1) ret += tree[l++];
-			if (~r & 1) ret += tree[r--];
-		}
+		for (; i; i -= i & -i) ret += tree[i];
 		return ret;
 	}
 private:
@@ -31,8 +27,8 @@ auto sol = [](int n, int q, auto v, auto qs) {
 	sort(q_idx.begin(), q_idx.end(), [&](int i, int j) {
 		return qs[i][0] + qs[i][1] < qs[j][0] + qs[j][1];
 	});
-	segtree l0(1'000'000), l1(1'000'000);
-	segtree r0(1'000'000), r1(1'000'000);
+	int sz = 1'000'000;
+	fenwick l0(sz), l1(sz), r0(sz), r1(sz);
 	for (auto [l, r] : v) {
 		r0.update(l, r - l);
 		r1.update(l, i64(r - l) * l);
@@ -45,15 +41,11 @@ auto sol = [](int n, int q, auto v, auto qs) {
 			auto [l, r] = v[pos++];
 			r0.update(l, -(r - l));
 			r1.update(l, -i64(r - l) * l);
-			l0.update(r, r - l);
-			l1.update(r, i64(r - l) * r);
+			l0.update(sz + 1 - r, r - l);
+			l1.update(sz + 1 - r, i64(r - l) * r);
 		}
-		i64 res_l0 = l0.query(s, 1'000'000);
-		i64 res_l1 = l1.query(s, 1'000'000);
-		i64 res_r0 = r0.query(1, e);
-		i64 res_r1 = r1.query(1, e);
-		i64 res_l = res_l1 - s * res_l0;
-		i64 res_r = e * res_r0 - res_r1;
+		i64 res_l = l1.query(sz + 1 - s) - s * l0.query(sz + 1 - s);
+		i64 res_r = e * r0.query(e) - r1.query(e);
 		res[i] = res_l + res_r;
 	}
 	return res;

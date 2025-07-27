@@ -18,6 +18,7 @@ auto sol = [](int n, auto v) {
 	for (int iter = 0; iter < 30; iter++) {
 		int i = gen_rand(0, n - 1);
 		int j = gen_rand(0, n - 1);
+		while (i == j) j = gen_rand(0, n - 1);
 		int val = abs(v[i] - v[j]);
 		for (int x = 2; x * x <= val; x++) {
 			if (val % x) continue;

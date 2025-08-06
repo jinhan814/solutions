@@ -21,20 +21,17 @@ auto sol = [](int n, int k, auto v) {
 			if (nxt[i][j] > 30) nxt[i][j] = 30;
 		}
 	}
-	vector a(30, 0LL);
-	vector b(30, 0);
+	vector a(30, 0), b(30, 0);
 	for (int i = 0; i < 30; i++) {
-		b[i] = i;
+		int x = i;
 		for (int j = 0 ; j < n; j++) {
-			b[i] = nxt[b[i]][v[j]];
-			if (b[i] == 30) a[i]++, b[i] = 0;
+			x = nxt[x][v[j]];
+			if (x == 30) a[i]++, x = 0;
 		}
+		b[i] = x;
 	}
 	i64 ret = 0;
-	for (int i = 0, x = 0; i < k; i++) {
-		ret += a[x];
-		x = b[x];
-	}
+	for (int i = 0, x = 0; i < k; i++) ret += a[x], x = b[x];
 	return ret;
 };
 

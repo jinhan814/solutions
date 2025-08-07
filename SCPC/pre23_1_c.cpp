@@ -13,18 +13,6 @@ auto get_fail = [](const auto& s) {
 	return f;
 };
 
-auto kmp = [](const auto& s, const auto& t) {
-	vector ret(0, 0), f = get_fail(t);
-	for (int i = 0, j = 0; i < s.size(); i++) {
-		while (j && s[i] != t[j]) j = f[j - 1];
-		if (s[i] == t[j] && ++j == t.size()) {
-			ret.push_back(i - t.size() + 1);
-			j = f[j - 1];
-		}
-	}
-	return ret;
-};
-
 auto sol = [](int n, auto v) {
 	i64 acc = 0;
 	for (int i = 0; i < n; i++) acc += v[i];
@@ -36,7 +24,11 @@ auto sol = [](int n, auto v) {
 	}
 	auto nv = v;
 	nv.insert(nv.end(), v.begin(), v.end());
-	return kmp(nv, v)[1];
+	auto f = get_fail(nv);
+	for (int i = n; i < 2 * n; i++) {
+		if (f[i] < n) continue;
+		return i - n + 1;
+	}
 };
 
 int main() {

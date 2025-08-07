@@ -10,8 +10,7 @@ auto sol = [](int n, string s) {
 		if (s[i] == '(' || s[i] == '{') p[i + 1]++;
 		if (s[i] == ')' || s[i] == '}') p[i + 1]--;
 	}
-	vector c(2 * n + 2, 0);
-	vector v(n + 1, 0);
+	vector c(2 * n + 2, 0), v(n + 1, 0);
 	for (int i = 0; i <= n; i++) c[p[i] + 1]++;
 	for (int i = 1; i <= 2 * n; i++) c[i] += c[i - 1];
 	for (int i = 0; i <= n; i++) v[c[p[i]]++] = i;

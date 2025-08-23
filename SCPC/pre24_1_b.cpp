@@ -1,11 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+using i64 = long long;
+
 auto sol = [](int n, auto v) {
 	sort(v.begin(), v.end());
-	int ret = 0;
+	i64 ret = 0;
 	for (int i = 0; i < n / 4; i++) {
-		int val = v[n - 1 - i] - v[n / 4 - 1 - i];
+		int val = v[n - 1 - i] - v[i];
 		ret += 2 * val;
 	}
 	return ret;

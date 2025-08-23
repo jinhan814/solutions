@@ -2,14 +2,11 @@
 using namespace std;
 
 auto sol = [](int n, string s) {
-	while (s.size() && s.back() == 'B') s.pop_back();
-	reverse(s.begin(), s.end());
-	while (s.size() && s.back() == 'B') s.pop_back();
 	int ret = 0;
-	for (int i = 0, j = 0; i < s.size(); i = j) {
-		while (j < s.size() && s[i] == s[j]) j++;
-		if (s[i] == 'A') ret += (j - i - 1) * 2;
-		else if (j - i == 1) ret++;
+	for (int i = 1; i < n; i++) {
+		if (s[i] != 'A') continue;
+		if (s[i - 1] == 'A') ret += 2;
+		else if (i > 1 && s[i - 2] == 'A') ret++;
 	}
 	return ret;
 };

@@ -1,5 +1,3 @@
-// reference : https://blog.kyouko.moe/75
-
 #include <bits/stdc++.h>
 using namespace std;
 

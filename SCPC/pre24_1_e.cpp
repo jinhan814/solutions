@@ -28,13 +28,13 @@ auto sol = [](int n, int q, auto v, auto qs) {
 		}
 	};
 	vector res(q, 0);
-	for (int cl = 0, cr = -1; int i : idx) {
-		auto [l, r] = qs[i];
+	for (int i = 0, cl = 0, cr = -1; i < q; i++) {
+		auto [l, r] = qs[idx[i]];
 		while (cl > l) push(v[--cl]);
 		while (cr < r) push(v[++cr]);
 		while (cl < l) pop(v[cl++]);
 		while (cr > r) pop(v[cr--]);
-		res[i] = acc;
+		res[idx[i]] = acc;
 	}
 	return res;
 };

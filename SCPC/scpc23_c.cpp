@@ -88,29 +88,24 @@ auto sol = [](int n, int q, auto par, auto v, auto qs) {
 		for (int nxt : adj[cur]) {
 			if (nxt == adj[cur][0]) continue;
 			self(self, nxt);
-			auto f = [&](const auto& self, int i) -> void {
+			auto dfs = [&](const auto& self, int i) -> void {
 				t1.update(pri[i], -v[i]);
 				t2.update(pri[i], -1);
 				for (int j : adj[i]) self(self, j);
 			};
-			f(f, nxt);
+			dfs(dfs, nxt);
 		}
 		if (adj[cur].size()) {
 			self(self, adj[cur][0]);
 			dp[cur] = dp[adj[cur][0]];
 		}
-		auto g = [&](const auto& self, int i) -> void {
-			i64 s = t1.query(1, pri[i]);
-			i64 t = t2.query(pri[i], n);
-			dp[cur] += s + v[i] * t + v[i];
+		auto dfs = [&](const auto& self, int i) -> void {
+			dp[cur] += t1.query(1, pri[i]) + v[i] * t2.query(pri[i], n) + v[i];
 			t1.update(pri[i], v[i]);
 			t2.update(pri[i], 1);
-			for (int j : adj[i]) {
-				if (j == adj[cur][0]) continue;
-				self(self, j);
-			}
+			for (int j : adj[i]) if (j != adj[cur][0]) self(self, j);
 		};
-		g(g, cur);
+		dfs(dfs, cur);
 	};
 	rec(rec, 1);
 	vector res(q, 0LL);

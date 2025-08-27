@@ -14,28 +14,10 @@ auto sol = [](int n, auto v) {
 		p1[i] = p1[i - 1] + (v[i] == 1);
 		p2[i] = p2[i - 1] + (v[i] == 2);
 	}
-	if (p1[n] + p2[n] == n) {
-		if (abs(p1[n] - p2[n]) <= 1) return vector(0, array{ 0, 0, 0 });
-		if (p1[n] < p2[n]) {
-			int k = (p2[n] - p1[n]) / 2;
-			int p = 1;
-			while (v[p] != 1) p++;
-			if (p - 1 >= k) return vector{ array{ 1, p - k, p } };
-			while (p - p1[p] != k) p++;
-			return vector{ array{ 1, 1, p } };
-		}
-		else {
-			int k = (p1[n] - p2[n]) / 2;
-			int p = 1;
-			while (v[p] != 2) p++;
-			if (p - 1 >= k) return vector{ array{ 2, p - k, p } };
-			while (p - p2[p] != k) p++;
-			return vector{ array{ 2, 1, p } };
-		}
-	}
+	if (p1[n] + p2[n] == n && abs(p1[n] - p2[n]) <= 1) return vector(0, array{ 0, 0, 0 });
 	int l = 1, r = n;
-	while (v[l]) l++;
-	while (v[r]) r--;
+	while (l < n && v[l]) l++;
+	while (r > 1 && v[r]) r--;
 	vector c1(l + 1, 0), c2(l + 1, 0);
 	for (int i = r, j = 0; i <= n; i++) {
 		if (p1[i] == 0) continue;
